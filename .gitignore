@@ -1,0 +1,15 @@
+# Obsidian vault internals
+.obsidian/
+
+# OS / editor
+Thumbs.db
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Vercel
+.vercel/
+
+# Logs
+*.log

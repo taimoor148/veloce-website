@@ -1,0 +1,110 @@
+/*
+  ============================================================
+  VELOCE — hero full-width background slider, 5s auto, 3D
+  ============================================================
+*/
+
+/* ---- Full-width background carousel ---- */
+.hero-car {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  perspective: 1600px;
+}
+
+.hero-car__stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* ---- Individual slides: full-bleed background images ---- */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateZ(-80px) rotateY(6deg) scale(1.06);
+  transition:
+    opacity 1.1s var(--ease),
+    transform 1.4s var(--ease),
+    visibility 0s linear 1.4s;
+  will-change: transform, opacity;
+}
+.hero-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateZ(0) rotateY(0deg) scale(1);
+  transition:
+    opacity 1.1s var(--ease),
+    transform 1.4s var(--ease),
+    visibility 0s;
+}
+
+.hero-slide__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+}
+
+/* dark overlays for clean, readable centered text */
+.hero-slide__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 40%, rgba(10, 10, 12, 0.35), rgba(10, 10, 12, 0.78) 78%),
+    linear-gradient(180deg, rgba(10, 10, 12, 0.55) 0%, rgba(10, 10, 12, 0.25) 40%, rgba(10, 10, 12, 0.6) 100%);
+  pointer-events: none;
+}
+.hero-slide__tint {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(80% 70% at 50% 108%, rgba(225, 6, 0, 0.2), transparent 65%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* ---- Dots ---- */
+.hero-car__dots {
+  position: absolute;
+  bottom: var(--space-5);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: 0;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.3s, transform 0.3s, width 0.3s var(--ease), opacity 0.3s;
+}
+.hero-dot.is-active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+/* ---- 3D live-tilt applied via JS (pointer move) ---- */
+.hero-car.is-tilting .hero-car__stage {
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.2s var(--ease);
+}
+.hero-car.is-tilting .hero-car__stage.on-exit {
+  transition: transform 0.9s var(--ease);
+}
+
+/* ---- Hero stats strip sits above the slider ---- */
+.hero__stats { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { transition: opacity 0.4s linear; }
+}
