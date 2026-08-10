@@ -20,6 +20,22 @@
 </head>
 <body>
 
+  <!-- LOADER (1→100) -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <div class="loader__logo">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 29 L20 8 L34 29 Z" fill="currentColor"/></svg>
+        <span>VELOCE</span>
+      </div>
+      <div class="loader__speed">
+        <span class="loader__num" id="loaderNum">0</span>
+        <span class="loader__unit">KM/H</span>
+      </div>
+      <div class="loader__track"><span class="loader__bar" id="loaderBar"></span></div>
+      <p class="loader__tag">Igniting the machine…</p>
+    </div>
+  </div>
+
   <!-- Skip link for keyboard users -->
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -75,7 +91,7 @@
           <div class="hero-car__stage" id="heroStage">
 
               <!-- SLIDE 1 · V8R Coupe -->
-              <article class="hero-slide is-active" data-slide="0" data-hp="740" data-accel="2.9" data-top="341" data-torque="650">
+              <article class="hero-slide is-active" data-slide="0" data-model="V8R Coupe" data-hp="740" data-accel="2.9" data-top="341" data-torque="650">
                 <img class="hero-slide__img"
                      src="https://images.unsplash.com/photo-1704226840161-5718a7894bf0?auto=format&fit=crop&w=1800&q=80"
                      srcset="https://images.unsplash.com/photo-1704226840161-5718a7894bf0?auto=format&fit=crop&w=900&q=75 900w, https://images.unsplash.com/photo-1704226840161-5718a7894bf0?auto=format&fit=crop&w=1400&q=80 1400w, https://images.unsplash.com/photo-1704226840161-5718a7894bf0?auto=format&fit=crop&w=1800&q=80 1800w"
@@ -87,7 +103,7 @@
               </article>
 
               <!-- SLIDE 2 · GCS Hyper -->
-              <article class="hero-slide" data-slide="1" data-hp="1200" data-accel="1.9" data-top="360" data-torque="1250">
+              <article class="hero-slide" data-slide="1" data-model="GCS Hyper" data-hp="1200" data-accel="1.9" data-top="360" data-torque="1250">
                 <img class="hero-slide__img"
                      src="https://images.unsplash.com/photo-1635942185703-65cbbedb555a?auto=format&fit=crop&w=1800&q=80"
                      srcset="https://images.unsplash.com/photo-1635942185703-65cbbedb555a?auto=format&fit=crop&w=900&q=75 900w, https://images.unsplash.com/photo-1635942185703-65cbbedb555a?auto=format&fit=crop&w=1400&q=80 1400w, https://images.unsplash.com/photo-1635942185703-65cbbedb555a?auto=format&fit=crop&w=1800&q=80 1800w"
@@ -99,7 +115,7 @@
               </article>
 
               <!-- SLIDE 3 · RSR GT3 -->
-              <article class="hero-slide" data-slide="2" data-hp="580" data-accel="1.9" data-top="325" data-torque="620">
+              <article class="hero-slide" data-slide="2" data-model="RSR GT3" data-hp="580" data-accel="1.9" data-top="325" data-torque="620">
                 <img class="hero-slide__img"
                      src="https://images.unsplash.com/photo-1520587210458-bd3bee813b97?auto=format&fit=crop&w=1800&q=80"
                      srcset="https://images.unsplash.com/photo-1520587210458-bd3bee813b97?auto=format&fit=crop&w=900&q=75 900w, https://images.unsplash.com/photo-1520587210458-bd3bee813b97?auto=format&fit=crop&w=1400&q=80 1400w, https://images.unsplash.com/photo-1520587210458-bd3bee813b97?auto=format&fit=crop&w=1800&q=80 1800w"
@@ -111,19 +127,16 @@
               </article>
 
         </div>
-
-        <!-- Slide navigation dots -->
-        <div class="hero-car__dots" role="tablist" aria-label="Featured cars">
-          <button class="hero-dot is-active" data-slide="0" aria-label="V8R Coupe"></button>
-          <button class="hero-dot" data-slide="1" aria-label="GCS Hyper"></button>
-          <button class="hero-dot" data-slide="2" aria-label="RSR GT3"></button>
-        </div>
       </div>
 
-      <!-- Centered, clean minimalist text -->
+      <!-- Cinematic editorial hero copy -->
       <div class="container hero__content">
-        <p class="eyebrow hero__eyebrow reveal" data-reveal="1">Est. 1998 · Geneva, Switzerland</p>
-        <h1 class="hero__title reveal" data-reveal="2">UNLEASH THE <span class="outline">MACHINE</span></h1>
+        <p class="eyebrow hero__eyebrow reveal" data-reveal="1">VELOCE · Signature Performance · Est. 1998 Geneva</p>
+        <h1 class="hero__title reveal" data-reveal="2">
+          <span class="hero__title-w">UNLEASH</span>
+          <span class="hero__title-m">THE MACHINE</span>
+        </h1>
+        <div class="hero__rule reveal" data-reveal="3" aria-hidden="true"><span></span></div>
         <p class="hero__sub reveal" data-reveal="3">
           Every VELOCE is a precision instrument — sculpted carbon, a screaming V10 heart,
           and zero compromises. Built for drivers who measure life in seconds.
@@ -132,6 +145,20 @@
           <a href="#models" class="btn btn--primary">Explore the Fleet</a>
           <a href="#performance" class="btn btn--ghost">Watch Specs</a>
         </div>
+      </div>
+
+      <!-- Featured model (bottom-left) -->
+      <p class="hero__model">
+        <span class="hero__model-k">Featured model</span>
+        <span class="hero__model-v" id="heroModel">V8R Coupe</span>
+      </p>
+
+      <!-- Slide navigation dots (flow, above stats) -->
+      <div class="hero-car__dots" role="tablist" aria-label="Featured cars">
+        <button class="hero-dot is-active" data-slide="0" aria-label="V8R Coupe"></button>
+        <button class="hero-dot" data-slide="1" aria-label="GCS Hyper"></button>
+        <button class="hero-dot" data-slide="2" aria-label="RSR GT3"></button>
+        <span class="hero__count" id="heroCount" aria-live="polite"><b>01</b><em>/ 03</em></span>
       </div>
 
       <!-- Hero stats strip -->
@@ -172,9 +199,12 @@
     <section class="models section" id="models">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">The Fleet</p>
-          <h2 class="section-title">Choose Your Weapon</h2>
-          <p class="section-sub">Six expressions of the same obsession. Every one hand-assembled, then let loose on a track before delivery.</p>
+          <span class="section-head__index">01</span>
+          <div>
+            <p class="eyebrow">The Fleet</p>
+            <h2 class="section-title">Choose Your Weapon</h2>
+            <p class="section-sub">Six expressions of the same obsession. Every one hand-assembled, then let loose on a track before delivery.</p>
+          </div>
         </div>
 
         <div class="models__filters" role="group" aria-label="Filter models">
@@ -187,6 +217,7 @@
         <div class="models__grid">
           <!-- CARD 1 -->
           <article class="model-card reveal" data-category="coupe" tabindex="0">
+            <span class="model-card__num">01</span>
             <div class="model-card__art" style="--car-color:#E10600">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1506610654-064fbba4780c?auto=format&fit=crop&w=1000&q=80"
@@ -215,6 +246,7 @@
 
           <!-- CARD 2 -->
           <article class="model-card reveal" data-category="track" tabindex="0">
+            <span class="model-card__num">02</span>
             <div class="model-card__art" style="--car-color:#F5F5F7">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1520587210458-bd3bee813b97?auto=format&fit=crop&w=1000&q=80"
@@ -243,6 +275,7 @@
 
           <!-- CARD 3 -->
           <article class="model-card reveal" data-category="gt" tabindex="0">
+            <span class="model-card__num">03</span>
             <div class="model-card__art" style="--car-color:#D4AF37">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1635942185703-65cbbedb555a?auto=format&fit=crop&w=1000&q=80"
@@ -271,6 +304,7 @@
 
           <!-- CARD 4 -->
           <article class="model-card reveal" data-category="coupe" tabindex="0">
+            <span class="model-card__num">04</span>
             <div class="model-card__art" style="--car-color:#0EA5E9">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?auto=format&fit=crop&w=1000&q=80"
@@ -299,6 +333,7 @@
 
           <!-- CARD 5 -->
           <article class="model-card reveal" data-category="track" tabindex="0">
+            <span class="model-card__num">05</span>
             <div class="model-card__art" style="--car-color:#94A3B8">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80"
@@ -327,6 +362,7 @@
 
           <!-- CARD 6 -->
           <article class="model-card reveal" data-category="gt" tabindex="0">
+            <span class="model-card__num">06</span>
             <div class="model-card__art" style="--car-color:#D4AF37">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1541348263662-e068662d82af?auto=format&fit=crop&w=1000&q=80"
@@ -375,9 +411,14 @@
         </div>
 
         <div class="featured__body reveal">
-          <p class="eyebrow">Flagship 2026</p>
-          <h2 class="featured__name">GCS Hyper</h2>
-          <p class="featured__tagline">The fastest series-production car we have ever built.</p>
+          <div class="section-head">
+          <span class="section-head__index">02</span>
+          <div>
+            <p class="eyebrow">Flagship 2026</p>
+            <h2 class="featured__name">GCS Hyper</h2>
+            <p class="section-sub">The fastest series-production car we have ever built.</p>
+          </div>
+        </div>
           <p class="featured__desc">
             1,200 hp plug-in hybrid. Active aero that sculpts the air in millimeters.
             A carbon monocoque under 1,400 kg. This is not a car. It is a statement.
@@ -413,10 +454,13 @@
     <!-- PERFORMANCE -->
     <section class="performance section" id="performance">
       <div class="container">
-        <div class="section-head section-head--center">
-          <p class="eyebrow">Engineered Datum</p>
-          <h2 class="section-title">Numbers That Bite</h2>
-          <p class="section-sub">Benchmarked on track. Verified by telemetry. Unforgiving on paper.</p>
+        <div class="section-head">
+          <span class="section-head__index">03</span>
+          <div>
+            <p class="eyebrow">Engineered Datum</p>
+            <h2 class="section-title">Numbers That Bite</h2>
+            <p class="section-sub">Benchmarked on track. Verified by telemetry. Unforgiving on paper.</p>
+          </div>
         </div>
 
         <div class="performance__grid">
@@ -426,10 +470,10 @@
               <circle class="gauge__arc" cx="100" cy="100" r="82" data-dash="0"/>
               <circle class="gauge__knob" cx="100" cy="100" r="10"/>
               <g class="gauge__needle" data-angle="0">
-                <line x1="100" y1="100" x2="100" y2="34"/>
+                <line x1="100" y1="100" x2="100" y2="52"/>
               </g>
-              <text class="gauge__read" x="100" y="150" text-anchor="middle">341</text>
-              <text class="gauge__unit" x="100" y="168" text-anchor="middle">KM/H TOP SPEED</text>
+              <text class="gauge__read" x="100" y="158" text-anchor="middle">341</text>
+              <text class="gauge__unit" x="100" y="174" text-anchor="middle">KM/H TOP SPEED</text>
             </svg>
           </article>
 
@@ -463,9 +507,12 @@
     <section class="technology section" id="technology">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Technology</p>
-          <h2 class="section-title">Obsessed with Engineering</h2>
-          <p class="section-sub">From active suspension to battery telemetry — every system exists to put you closer to the limit.</p>
+          <span class="section-head__index">04</span>
+          <div>
+            <p class="eyebrow">Technology</p>
+            <h2 class="section-title">Obsessed with Engineering</h2>
+            <p class="section-sub">From active suspension to battery telemetry — every system exists to put you closer to the limit.</p>
+          </div>
         </div>
 
         <div class="tech-grid">
@@ -516,8 +563,11 @@
     <section class="gallery section" id="gallery">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Gallery</p>
-          <h2 class="section-title">Born on the Edge</h2>
+          <span class="section-head__index">05</span>
+          <div>
+            <p class="eyebrow">Gallery</p>
+            <h2 class="section-title">Born on the Edge</h2>
+          </div>
         </div>
 
         <div class="gallery__grid">
@@ -576,21 +626,56 @@
       </div>
     </section>
 
-    <!-- QUOTES / SOCIAL PROOF -->
-    <section class="quotes section" aria-label="Press quotes">
+    <!-- TESTIMONIALS / PRESS -->
+    <section class="quotes section" aria-label="Testimonials and press">
       <div class="container">
+        <div class="section-head section-head--center">
+          <p class="eyebrow">What the press says</p>
+          <h2 class="section-title">Driven Words</h2>
+        </div>
+
         <div class="quotes__slider" id="quotesSlider">
           <blockquote class="quote reveal">
-            <p>“The GCS Hyper rewrites what we believed a road car could brake, turn and accelerate to.”</p>
-            <footer>— <strong>TopMotor</strong> · Car of the Year</footer>
+            <span class="quote__mark" aria-hidden="true">“</span>
+            <p>The GCS Hyper rewrites what we believed a road car could brake, turn and accelerate to.</p>
+            <footer>
+              <span class="quote__author">
+                <span class="quote__avatar" aria-hidden="true">TM</span>
+                <span class="quote__who">
+                  <strong>TopMotor</strong>
+                  <em>Car of the Year</em>
+                </span>
+              </span>
+              <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
+            </footer>
           </blockquote>
           <blockquote class="quote reveal" hidden>
-            <p>“Nothing at this price point makes you feel like this. Raw, precise, alive.”</p>
-            <footer>— <strong>Pole Position Weekly</strong></footer>
+            <span class="quote__mark" aria-hidden="true">“</span>
+            <p>Nothing at this price point makes you feel like this. Raw, precise, alive.</p>
+            <footer>
+              <span class="quote__author">
+                <span class="quote__avatar" aria-hidden="true">PP</span>
+                <span class="quote__who">
+                  <strong>Pole Position</strong>
+                  <em>Weekly</em>
+                </span>
+              </span>
+              <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
+            </footer>
           </blockquote>
           <blockquote class="quote reveal" hidden>
-            <p>“A masterpiece of obsession. The V10 is the loudest argument for petrol in a decade.”</p>
-            <footer>— <strong>Velocity Magazine</strong></footer>
+            <span class="quote__mark" aria-hidden="true">“</span>
+            <p>A masterpiece of obsession. The V10 is the loudest argument for petrol in a decade.</p>
+            <footer>
+              <span class="quote__author">
+                <span class="quote__avatar" aria-hidden="true">VM</span>
+                <span class="quote__who">
+                  <strong>Velocity Magazine</strong>
+                  <em>Design of the Year</em>
+                </span>
+              </span>
+              <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
+            </footer>
           </blockquote>
         </div>
         <div class="quotes__dots" id="quotesDots" role="tablist" aria-label="Quote navigation">
@@ -682,48 +767,85 @@
   <!-- TOAST -->
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer__grid">
-      <div class="footer__brand">
-        <a class="nav__brand" href="#hero">
-          <svg class="nav__logo" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 29 L20 8 L34 29 Z" fill="currentColor"/></svg>
-          <span class="nav__wordmark">VELOCE</span>
-        </a>
-        <p>Signature performance automobiles, hand-built in Geneva since 1998.</p>
+    <div class="container">
+      <!-- CTA band -->
+      <div class="footer__cta">
+        <div class="footer__cta-head">
+          <p class="eyebrow">Stay in the loop</p>
+          <h3 class="footer__cta-title">Join the inner circle</h3>
+        </div>
+        <form class="footer__form" id="footerForm" novalidate>
+          <label class="footer__form-label" for="footerEmail">Email address</label>
+          <div class="footer__form-row">
+            <input id="footerEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+            <button class="btn btn--primary" type="submit">Subscribe</button>
+          </div>
+          <p class="footer__form-note" aria-live="polite">Launch invitations, allocations &amp; track days. No spam, ever.</p>
+        </form>
       </div>
-      <div class="footer__col">
-        <h4>Explore</h4>
-        <a href="#models">Models</a>
-        <a href="#featured">Featured</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Test Drive</a>
+
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="nav__brand" href="#hero">
+            <svg class="nav__logo" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 29 L20 8 L34 29 Z" fill="currentColor"/></svg>
+            <span class="nav__wordmark">VELOCE</span>
+          </a>
+          <p>Signature performance automobiles, hand-built in Geneva since 1998. Twelve cars a year. Zero compromise.</p>
+          <div class="footer__social">
+            <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1"/></svg>
+            </a>
+            <a href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8a3 3 0 013-3h12a3 3 0 013 3v8a3 3 0 01-3 3H6a3 3 0 01-3-3z"/><path d="M10 9v6l5-3z"/></svg>
+            </a>
+            <a href="https://x.com" aria-label="X" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <a href="#models">Models</a>
+          <a href="#featured">Featured</a>
+          <a href="#performance">Performance</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Test Drive</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="#technology">Technology</a>
+          <a href="#quotes">Press</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">Careers</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">Heritage</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <a href="#contact">Route de Lancy 48, Geneva</a>
+          <a href="#contact">+41 22 000 0000</a>
+          <a href="#contact">drive@veloce-motors.com</a>
+        </div>
       </div>
-      <div class="footer__col">
-        <h4>Company</h4>
-        <a href="#technology">Technology</a>
-        <a href="#performance">Performance</a>
-        <a href="#quotes">Press</a>
-      </div>
-      <div class="footer__col">
-        <h4>Follow</h4>
-        <div class="footer__social">
-          <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1"/></svg>
-          </a>
-          <a href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8a3 3 0 013-3h12a3 3 0 013 3v8a3 3 0 01-3 3H6a3 3 0 01-3-3z"/><path d="M10 9v6l5-3z"/></svg>
-          </a>
-          <a href="https://x.com" aria-label="X" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
-          </a>
+
+      <div class="footer__bottom">
+        <span>© 2026 VELOCE Motors. Imaginary brand for demonstration.</span>
+        <div class="footer__bottom-links">
+          <a href="#hero">Privacy</a>
+          <span>·</span>
+          <a href="#hero">Terms</a>
+          <span>·</span>
+          <a href="#hero">Cookies</a>
         </div>
       </div>
     </div>
-    <div class="container footer__bottom">
-      <span>© 2026 VELOCE Motors. Imaginary brand for demonstration.</span>
-      <span class="footer__formal">Images are SVG illustrations · not real vehicles</span>
-    </div>
+
+    <!-- Giant watermark -->
+    <span class="footer__watermark" aria-hidden="true">VELOCE</span>
   </footer>
 
   <!-- BACK TO TOP -->

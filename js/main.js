@@ -14,6 +14,101 @@
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
 
   /* ============================================================
+     LOADER — speed 0→100 (accelerating), then reveal page
+     ============================================================ */
+  var loader = document.getElementById("loader");
+  var loaderNum = document.getElementById("loaderNum");
+  var loaderBar = document.getElementById("loaderBar");
+
+  function runLoader() {
+    if (!loader) return;
+    if (prefersReduced) { loader.classList.add("is-done"); document.body.classList.add("is-loaded"); return; }
+
+    document.body.style.overflow = "hidden";
+    var n = 0;
+    var start = performance.now();
+    var DURATION = 1400;
+    // ease-in curve: starts slow, ends fast (rev metre spooling up)
+    function easeOut(p) { return 1 - Math.pow(1 - p, 2.6); }
+
+    function tick(now) {
+      var p = Math.min(1, (now - start) / DURATION);
+      var pct = Math.round(easeOut(p) * 100);
+      if (loaderNum) loaderNum.textContent = pct;
+      if (loaderBar) loaderBar.style.width = pct + "%";
+      if (p < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        setTimeout(function () {
+          loader.classList.add("is-done");
+          document.body.classList.add("is-loaded");
+          document.body.style.overflow = "";
+        }, 220);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  runLoader();
+
+  /* ============================================================
+     CUSTOM CURSOR (fine pointers only)
+     ============================================================ */
+  var cursor = document.getElementById("cursor");
+  if (cursor && window.matchMedia("(pointer:fine)").matches && !prefersReduced) {
+    var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    var rx = cx, ry = cy; // ring position (lerped)
+    var raf = null;
+
+    document.addEventListener("mousemove", function (e) {
+      cx = e.clientX;
+      cy = e.clientY;
+      cursor.classList.add("is-on");
+      var dot = $(".cursor__dot", cursor);
+      if (dot) dot.style.transform = "translate(" + (cx) + "px," + (cy) + "px) translate(-50%,-50%)";
+      if (!raf) {
+        raf = requestAnimationFrame(function loop() {
+          rx += (cx - rx) * 0.18;
+          ry += (cy - ry) * 0.18;
+          var ring = $(".cursor__ring", cursor);
+          if (ring) ring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)";
+          if (Math.abs(cx - rx) > 0.4 || Math.abs(cy - ry) > 0.4) {
+            raf = requestAnimationFrame(loop);
+          } else {
+            raf = null;
+          }
+        });
+      }
+    });
+
+    document.addEventListener("mousedown", function () { cursor.classList.add("is-pressed"); });
+    document.addEventListener("mouseup", function () { cursor.classList.remove("is-pressed"); });
+
+    // grow ring over links, buttons, and card-interactive things
+    $$("a, button, .model-card, .gallery-item, .chip, [role='button'], input, select, textarea").forEach(function (el) {
+      el.addEventListener("mouseenter", function () { cursor.classList.add("is-hover"); });
+      el.addEventListener("mouseleave", function () { cursor.classList.remove("is-hover"); });
+    });
+  }
+
+  /* ============================================================
+     FOOTER SUBSCRIBE (simple no-backend showcase)
+     ============================================================ */
+  var footerForm = document.getElementById("footerForm");
+  if (footerForm) {
+    footerForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var em = footerForm.querySelector("#footerEmail");
+      var note = footerForm.querySelector(".footer__form-note");
+      if (!em || !em.value || em.value.indexOf("@") < 0) {
+        if (note) note.textContent = "Please enter a valid email address.";
+        return;
+      }
+      footerForm.querySelector("button").textContent = "Welcome on board ✓";
+      if (note) { note.textContent = "You're in. Watch your inbox for allocations."; note.classList.add("is-success"); }
+    });
+  }
+
+  /* ============================================================
      SCROLL PROGRESS BAR + NAV STATE
      ============================================================ */
   var progressBar = document.getElementById("progressBar");
@@ -395,6 +490,20 @@
     heroDots.forEach(function (d, idx) {
       d.classList.toggle("is-active", idx === heroIndex);
     });
+
+    // sync hero model name + count indicator
+    var heroModel = document.getElementById("heroModel");
+    var heroCount = document.getElementById("heroCount");
+    var activeSlide = heroSlides[heroIndex];
+    if (activeSlide && heroModel) {
+      var m = activeSlide.getAttribute("data-model");
+      if (m) heroModel.textContent = m;
+    }
+    if (heroCount) {
+      var num = heroCount.querySelector("b");
+      var total = heroSlides.length;
+      if (num) num.textContent = String(heroIndex + 1).padStart(2, "0");
+    }
 
     // sync the static hero stats strip to the active car
     var active = heroSlides[heroIndex];
