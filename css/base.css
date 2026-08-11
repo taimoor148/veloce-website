@@ -118,20 +118,60 @@
   text-transform: uppercase;
   color: var(--text-faint);
 }
-.loader__track {
-  width: 260px;
-  height: 2px;
+.loader__road {
+  position: relative;
+  width: 280px;
+  height: 26px;
+}
+.loader__road::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 8px;
+  transform: translateY(-50%);
   background: var(--surface-2);
-  border-radius: 2px;
-  overflow: hidden;
+  border-radius: 4px;
+}
+.loader__road::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0 6px, transparent 6px 15px);
 }
 .loader__bar {
-  display: block;
-  height: 100%;
+  position: absolute;
+  left: 0; top: 50%;
+  height: 8px;
   width: 0%;
+  transform: translateY(-50%);
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   box-shadow: 0 0 18px var(--accent-glow);
+  border-radius: 4px;
+  opacity: 0.9;
+  z-index: 1;
   transition: width 0.12s linear;
+}
+.loader__car {
+  position: absolute;
+  left: 0; top: 50%;
+  width: 44px;
+  height: 16px;
+  transform: translateY(-50%);
+  color: var(--accent);
+  filter: drop-shadow(0 3px 8px rgba(225, 6, 0, 0.5));
+  z-index: 3;
+  will-change: transform;
+}
+.loader__car svg {
+  width: 44px;
+  height: 16px;
+  animation: carBob 0.4s ease-in-out infinite alternate;
+}
+@keyframes carBob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1.5px); }
 }
 .loader__tag {
   font-size: 12px;

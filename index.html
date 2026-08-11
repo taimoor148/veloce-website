@@ -31,7 +31,17 @@
         <span class="loader__num" id="loaderNum">0</span>
         <span class="loader__unit">KM/H</span>
       </div>
-      <div class="loader__track"><span class="loader__bar" id="loaderBar"></span></div>
+      <div class="loader__road">
+        <span class="loader__car" id="loaderCar" aria-hidden="true">
+          <svg viewBox="0 0 44 16" aria-hidden="true">
+            <path d="M3 11 V8 Q3 6.5 5.5 6 L9 4.5 Q10 4 12 4 H28 Q30 4 31 4.5 L35 6.5 Q36.5 7.2 38.5 7.4 L40 8 V11 Z" fill="currentColor"/>
+            <path d="M11.5 4.2 L13.5 2 Q14 1.6 16 1.6 H27 Q28 1.6 29 2.8 L31 4.2 Z" fill="rgba(255,255,255,0.22)"/>
+            <circle cx="11.5" cy="11" r="2.7" fill="#0a0a0c" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="31.5" cy="11" r="2.7" fill="#0a0a0c" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </span>
+        <span class="loader__bar" id="loaderBar"></span>
+      </div>
       <p class="loader__tag">Igniting the machine…</p>
     </div>
   </div>
@@ -197,27 +207,35 @@
 
     <!-- MODELS / FLEET -->
     <section class="models section" id="models">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-head__index">01</span>
-          <div>
-            <p class="eyebrow">The Fleet</p>
-            <h2 class="section-title">Choose Your Weapon</h2>
-            <p class="section-sub">Six expressions of the same obsession. Every one hand-assembled, then let loose on a track before delivery.</p>
-          </div>
-        </div>
+      <span class="models__watermark" aria-hidden="true">THE FLEET</span>
 
-        <div class="models__filters" role="group" aria-label="Filter models">
-          <button class="chip is-active" data-filter="all">All</button>
-          <button class="chip" data-filter="coupe">Coupe</button>
-          <button class="chip" data-filter="track">Track</button>
-          <button class="chip" data-filter="gt">Grand Tourer</button>
+      <div class="container">
+        <div class="models__head">
+          <div class="section-head">
+            <span class="section-head__index">01</span>
+            <div>
+              <p class="eyebrow">The Fleet</p>
+              <h2 class="section-title">Choose Your Weapon</h2>
+            </div>
+          </div>
+          <div class="models__intro">
+            <p class="section-sub">
+              Six expressions of the same obsession. Every one hand-assembled on the same Geneva
+              line, then let loose on a track before delivery.
+            </p>
+            <div class="models__filters" role="group" aria-label="Filter models">
+              <button class="chip is-active" data-filter="all"><span>All</span><em>06</em></button>
+              <button class="chip" data-filter="coupe"><span>Coupe</span><em>02</em></button>
+              <button class="chip" data-filter="track"><span>Track</span><em>02</em></button>
+              <button class="chip" data-filter="gt"><span>Grand Tourer</span><em>02</em></button>
+            </div>
+          </div>
         </div>
 
         <div class="models__grid">
           <!-- CARD 1 -->
           <article class="model-card reveal" data-category="coupe" tabindex="0">
-            <span class="model-card__num">01</span>
+            <span class="model-card__num" aria-hidden="true">01</span>
             <div class="model-card__art" style="--car-color:#E10600">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1506610654-064fbba4780c?auto=format&fit=crop&w=1000&q=80"
@@ -226,11 +244,15 @@
                    loading="lazy" decoding="async"
                    alt="VELOCE V8R black coupe photographed at three-quarter front angle" />
               <div class="model-card__shade" aria-hidden="true"></div>
+              <span class="model-card__glow" aria-hidden="true"></span>
+              <span class="model-card__tag">Coupe</span>
             </div>
             <div class="model-card__body">
               <div class="model-card__head">
                 <h3 class="model-card__name">V8R</h3>
-                <span class="model-card__tag">Coupe</span>
+                <span class="model-card__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
               </div>
               <p class="model-card__specs">
                 <span><strong>740</strong> HP</span>
@@ -238,7 +260,7 @@
                 <span><strong>341</strong> km/h</span>
               </p>
               <div class="model-card__foot">
-                <span class="model-card__price">from <strong>$412,000</strong></span>
+                <span class="model-card__price">From <b>$412,000</b></span>
                 <a href="#contact" class="btn btn--sm btn--ghost">Configure</a>
               </div>
             </div>
@@ -246,7 +268,7 @@
 
           <!-- CARD 2 -->
           <article class="model-card reveal" data-category="track" tabindex="0">
-            <span class="model-card__num">02</span>
+            <span class="model-card__num" aria-hidden="true">02</span>
             <div class="model-card__art" style="--car-color:#F5F5F7">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1520587210458-bd3bee813b97?auto=format&fit=crop&w=1000&q=80"
@@ -255,11 +277,15 @@
                    loading="lazy" decoding="async"
                    alt="VELOCE RSR GT3 track car photographed at three-quarter angle" />
               <div class="model-card__shade" aria-hidden="true"></div>
+              <span class="model-card__glow" aria-hidden="true"></span>
+              <span class="model-card__tag">Track</span>
             </div>
             <div class="model-card__body">
               <div class="model-card__head">
                 <h3 class="model-card__name">RSR GT3</h3>
-                <span class="model-card__tag">Track</span>
+                <span class="model-card__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
               </div>
               <p class="model-card__specs">
                 <span><strong>580</strong> HP</span>
@@ -267,7 +293,7 @@
                 <span><strong>325</strong> km/h</span>
               </p>
               <div class="model-card__foot">
-                <span class="model-card__price">from <strong>$298,000</strong></span>
+                <span class="model-card__price">From <b>$298,000</b></span>
                 <a href="#contact" class="btn btn--sm btn--ghost">Configure</a>
               </div>
             </div>
@@ -275,7 +301,7 @@
 
           <!-- CARD 3 -->
           <article class="model-card reveal" data-category="gt" tabindex="0">
-            <span class="model-card__num">03</span>
+            <span class="model-card__num" aria-hidden="true">03</span>
             <div class="model-card__art" style="--car-color:#D4AF37">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1635942185703-65cbbedb555a?auto=format&fit=crop&w=1000&q=80"
@@ -284,11 +310,15 @@
                    loading="lazy" decoding="async"
                    alt="VELOCE GT-X Tourer grand tourer photographed on a mountain road" />
               <div class="model-card__shade" aria-hidden="true"></div>
+              <span class="model-card__glow" aria-hidden="true"></span>
+              <span class="model-card__tag">Grand Tourer</span>
             </div>
             <div class="model-card__body">
               <div class="model-card__head">
                 <h3 class="model-card__name">GT-X Tourer</h3>
-                <span class="model-card__tag">Grand Tourer</span>
+                <span class="model-card__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
               </div>
               <p class="model-card__specs">
                 <span><strong>650</strong> HP</span>
@@ -296,7 +326,7 @@
                 <span><strong>330</strong> km/h</span>
               </p>
               <div class="model-card__foot">
-                <span class="model-card__price">from <strong>$486,000</strong></span>
+                <span class="model-card__price">From <b>$486,000</b></span>
                 <a href="#contact" class="btn btn--sm btn--ghost">Configure</a>
               </div>
             </div>
@@ -304,7 +334,7 @@
 
           <!-- CARD 4 -->
           <article class="model-card reveal" data-category="coupe" tabindex="0">
-            <span class="model-card__num">04</span>
+            <span class="model-card__num" aria-hidden="true">04</span>
             <div class="model-card__art" style="--car-color:#0EA5E9">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?auto=format&fit=crop&w=1000&q=80"
@@ -313,11 +343,15 @@
                    loading="lazy" decoding="async"
                    alt="VELOCE Vulna coupe photographed in a parking structure at night" />
               <div class="model-card__shade" aria-hidden="true"></div>
+              <span class="model-card__glow" aria-hidden="true"></span>
+              <span class="model-card__tag">Coupe</span>
             </div>
             <div class="model-card__body">
               <div class="model-card__head">
                 <h3 class="model-card__name">Vulna</h3>
-                <span class="model-card__tag">Coupe</span>
+                <span class="model-card__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
               </div>
               <p class="model-card__specs">
                 <span><strong>605</strong> HP</span>
@@ -325,7 +359,7 @@
                 <span><strong>318</strong> km/h</span>
               </p>
               <div class="model-card__foot">
-                <span class="model-card__price">from <strong>$189,000</strong></span>
+                <span class="model-card__price">From <b>$189,000</b></span>
                 <a href="#contact" class="btn btn--sm btn--ghost">Configure</a>
               </div>
             </div>
@@ -333,7 +367,7 @@
 
           <!-- CARD 5 -->
           <article class="model-card reveal" data-category="track" tabindex="0">
-            <span class="model-card__num">05</span>
+            <span class="model-card__num" aria-hidden="true">05</span>
             <div class="model-card__art" style="--car-color:#94A3B8">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80"
@@ -342,11 +376,15 @@
                    loading="lazy" decoding="async"
                    alt="VELOCE Velavante track edition photographed in profile" />
               <div class="model-card__shade" aria-hidden="true"></div>
+              <span class="model-card__glow" aria-hidden="true"></span>
+              <span class="model-card__tag">Track</span>
             </div>
             <div class="model-card__body">
               <div class="model-card__head">
                 <h3 class="model-card__name">Velavante</h3>
-                <span class="model-card__tag">Track</span>
+                <span class="model-card__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
               </div>
               <p class="model-card__specs">
                 <span><strong>555</strong> HP</span>
@@ -354,7 +392,7 @@
                 <span><strong>322</strong> km/h</span>
               </p>
               <div class="model-card__foot">
-                <span class="model-card__price">from <strong>$331,000</strong></span>
+                <span class="model-card__price">From <b>$331,000</b></span>
                 <a href="#contact" class="btn btn--sm btn--ghost">Configure</a>
               </div>
             </div>
@@ -362,7 +400,7 @@
 
           <!-- CARD 6 -->
           <article class="model-card reveal" data-category="gt" tabindex="0">
-            <span class="model-card__num">06</span>
+            <span class="model-card__num" aria-hidden="true">06</span>
             <div class="model-card__art" style="--car-color:#D4AF37">
               <img class="model-card__img"
                    src="https://images.unsplash.com/photo-1541348263662-e068662d82af?auto=format&fit=crop&w=1000&q=80"
@@ -371,11 +409,15 @@
                    loading="lazy" decoding="async"
                    alt="VELOCE Vantura S grand tourer on a tree-lined road" />
               <div class="model-card__shade" aria-hidden="true"></div>
+              <span class="model-card__glow" aria-hidden="true"></span>
+              <span class="model-card__tag">Grand Tourer</span>
             </div>
             <div class="model-card__body">
               <div class="model-card__head">
                 <h3 class="model-card__name">Vantura S</h3>
-                <span class="model-card__tag">Grand Tourer</span>
+                <span class="model-card__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
               </div>
               <p class="model-card__specs">
                 <span><strong>612</strong> HP</span>
@@ -383,7 +425,7 @@
                 <span><strong>312</strong> km/h</span>
               </p>
               <div class="model-card__foot">
-                <span class="model-card__price">from <strong>$356,000</strong></span>
+                <span class="model-card__price">From <b>$356,000</b></span>
                 <a href="#contact" class="btn btn--sm btn--ghost">Configure</a>
               </div>
             </div>
@@ -453,6 +495,8 @@
 
     <!-- PERFORMANCE -->
     <section class="performance section" id="performance">
+      <span class="performance__watermark" aria-hidden="true">Telemetry</span>
+
       <div class="container">
         <div class="section-head">
           <span class="section-head__index">03</span>
@@ -464,20 +508,26 @@
         </div>
 
         <div class="performance__grid">
-          <article class="perf-card reveal">
+          <article class="perf-card perf-gauge reveal">
+            <span class="perf-gauge__bg" aria-hidden="true">341</span>
             <svg class="gauge" viewBox="0 0 200 200" role="img" aria-label="Speedometer reaching 341 km/h">
               <circle class="gauge__track" cx="100" cy="100" r="82"/>
+              <circle class="gauge__ticks" cx="100" cy="100" r="66"/>
               <circle class="gauge__arc" cx="100" cy="100" r="82" data-dash="0"/>
               <circle class="gauge__knob" cx="100" cy="100" r="10"/>
               <g class="gauge__needle" data-angle="0">
-                <line x1="100" y1="100" x2="100" y2="52"/>
+                <line x1="100" y1="100" x2="66" y2="134"/>
               </g>
-              <text class="gauge__read" x="100" y="158" text-anchor="middle">341</text>
-              <text class="gauge__unit" x="100" y="174" text-anchor="middle">KM/H TOP SPEED</text>
+              <text class="gauge__read" x="100" y="148" text-anchor="middle">341</text>
+              <text class="gauge__unit" x="100" y="166" text-anchor="middle">KM/H TOP SPEED</text>
             </svg>
           </article>
 
           <div class="perf-card perf-list reveal">
+            <div class="perf-list__head">
+              <h3 class="perf-list__title">V8R Telemetry</h3>
+              <p class="perf-list__sub">Dry track · Stock firmware · Pirelli Trofeo RS</p>
+            </div>
             <div class="perf-row">
               <span class="perf-row__k">Lap · Nürburgring</span>
               <span class="perf-row__v">6:43.20</span>
@@ -500,11 +550,18 @@
             </div>
           </div>
         </div>
+
+        <div class="performance__foot reveal">
+          <span class="performance__foot-dot" aria-hidden="true"></span>
+          <p>Every figure verified at the Nürburgring on 14 Apr 2026 · 10 timed runs · fastest lap recorded</p>
+        </div>
       </div>
     </section>
 
     <!-- TECHNOLOGY -->
     <section class="technology section" id="technology">
+      <span class="technology__watermark" aria-hidden="true">Engineering</span>
+
       <div class="container">
         <div class="section-head">
           <span class="section-head__index">04</span>
@@ -517,6 +574,7 @@
 
         <div class="tech-grid">
           <article class="tech-card reveal">
+            <span class="tech-card__num">01</span>
             <div class="tech-card__icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
             </div>
@@ -525,6 +583,7 @@
           </article>
 
           <article class="tech-card reveal">
+            <span class="tech-card__num">02</span>
             <div class="tech-card__icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 7v5l3 3"/></svg>
             </div>
@@ -533,6 +592,7 @@
           </article>
 
           <article class="tech-card reveal">
+            <span class="tech-card__num">03</span>
             <div class="tech-card__icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
@@ -541,6 +601,7 @@
           </article>
 
           <article class="tech-card reveal">
+            <span class="tech-card__num">04</span>
             <div class="tech-card__icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M6 19V9a6 6 0 0112 0v10"/><path d="M9 9l3-3 3 3"/></svg>
             </div>
@@ -549,6 +610,7 @@
           </article>
 
           <article class="tech-card tech-card--wide reveal">
+            <span class="tech-card__num">05</span>
             <div class="tech-card__icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h6l2-7 4 14 2-7h4"/></svg>
             </div>
@@ -561,12 +623,15 @@
 
     <!-- GALLERY -->
     <section class="gallery section" id="gallery">
+      <span class="gallery__watermark" aria-hidden="true">Gallery</span>
+
       <div class="container">
         <div class="section-head">
           <span class="section-head__index">05</span>
           <div>
             <p class="eyebrow">Gallery</p>
             <h2 class="section-title">Born on the Edge</h2>
+            <p class="section-sub">Six frames, zero post-production — shot entirely in camera across three continents.</p>
           </div>
         </div>
 
@@ -580,6 +645,10 @@
                    loading="lazy" decoding="async"
                    alt="GCS Hyper photographed at a race circuit" />
               <div class="gallery-item__shade" aria-hidden="true"></div>
+              <span class="gallery-item__num" aria-hidden="true">01</span>
+              <span class="gallery-item__zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
             </div>
             <figcaption>Le Mans Nights</figcaption>
           </figure>
@@ -593,6 +662,10 @@
                    loading="lazy" decoding="async"
                    alt="RSR GT3 parked in dim garage light" />
               <div class="gallery-item__shade" aria-hidden="true"></div>
+              <span class="gallery-item__num" aria-hidden="true">02</span>
+              <span class="gallery-item__zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
             </div>
             <figcaption>Midnight Garage</figcaption>
           </figure>
@@ -606,6 +679,10 @@
                    loading="lazy" decoding="async"
                    alt="GT-X Tourer sweeping through an alpine pass" />
               <div class="gallery-item__shade" aria-hidden="true"></div>
+              <span class="gallery-item__num" aria-hidden="true">03</span>
+              <span class="gallery-item__zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
             </div>
             <figcaption>High Alpine</figcaption>
           </figure>
@@ -619,6 +696,10 @@
                    loading="lazy" decoding="async"
                    alt="V8R in a rich studio lighting setup" />
               <div class="gallery-item__shade" aria-hidden="true"></div>
+              <span class="gallery-item__num" aria-hidden="true">04</span>
+              <span class="gallery-item__zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
             </div>
             <figcaption>Studio Gold</figcaption>
           </figure>
@@ -627,69 +708,131 @@
     </section>
 
     <!-- TESTIMONIALS / PRESS -->
-    <section class="quotes section" aria-label="Testimonials and press">
-      <div class="container">
-        <div class="section-head section-head--center">
-          <p class="eyebrow">What the press says</p>
-          <h2 class="section-title">Driven Words</h2>
+    <section class="quotes section" id="quotes" aria-label="Testimonials and press">
+      <span class="quotes__watermark" aria-hidden="true">Press</span>
+
+      <div class="quotes__wrap">
+
+        <!-- Big editorial press card -->
+        <article class="press-card reveal">
+          <span class="press-card__mark" aria-hidden="true">“</span>
+
+          <div class="press-card__body">
+            <!-- Left: verdict + controls -->
+            <div class="press-card__meta">
+              <p class="eyebrow">The press verdict</p>
+              <h2 class="press-card__title">Driven<br><span>Words</span></h2>
+
+              <div class="press-card__score">
+                <span class="press-card__score-num">5.0</span>
+                <div class="press-card__score-meta">
+                  <span class="press-card__stars" aria-label="5 out of 5 stars">★★★★★</span>
+                  <em>40+ reviews · 12 international awards</em>
+                </div>
+              </div>
+
+              <div class="press-card__controls">
+                <button class="quote-arrow" id="quotePrev" aria-label="Previous quote" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+                </button>
+                <button class="quote-arrow" id="quoteNext" aria-label="Next quote" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: quote stage -->
+            <div class="press-card__stage" id="quotesSlider">
+              <blockquote class="quote is-active" data-quote="0">
+                <span class="quote__publ">
+                  <i class="quote__publ-dot" aria-hidden="true"></i>
+                  TopMotor <em>· Car of the Year</em>
+                </span>
+                <p class="quote__text">The GCS Hyper rewrites what we believed a road car could brake, turn and accelerate to.</p>
+                <footer class="quote__foot">
+                  <span class="quote__avatar" aria-hidden="true">TM</span>
+                  <span class="quote__who">
+                    <strong>Timothee Marchand</strong>
+                    <em>Chief Tester · TopMotor</em>
+                  </span>
+                  <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
+                </footer>
+              </blockquote>
+
+              <blockquote class="quote" data-quote="1">
+                <span class="quote__publ">
+                  <i class="quote__publ-dot" aria-hidden="true"></i>
+                  Pole Position <em>· Weekly</em>
+                </span>
+                <p class="quote__text">Nothing at this price point makes you feel like this. Raw, precise, alive.</p>
+                <footer class="quote__foot">
+                  <span class="quote__avatar" aria-hidden="true">PP</span>
+                  <span class="quote__who">
+                    <strong>Pia Novak</strong>
+                    <em>Road Editor · Pole Position</em>
+                  </span>
+                  <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
+                </footer>
+              </blockquote>
+
+              <blockquote class="quote" data-quote="2">
+                <span class="quote__publ">
+                  <i class="quote__publ-dot" aria-hidden="true"></i>
+                  Velocity Magazine <em>· Design of the Year</em>
+                </span>
+                <p class="quote__text">A masterpiece of obsession. The V10 is the loudest argument for petrol in a decade.</p>
+                <footer class="quote__foot">
+                  <span class="quote__avatar" aria-hidden="true">VM</span>
+                  <span class="quote__who">
+                    <strong>Viktor Malone</strong>
+                    <em>Design Writer · Velocity Magazine</em>
+                  </span>
+                  <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+
+          <!-- Bottom rail: dots + live progress + counter -->
+          <div class="press-card__rail">
+            <div class="press-card__dots" id="quotesDots" role="tablist" aria-label="Quote navigation">
+              <button class="quote-dot is-active" data-slide="0" aria-label="Quote 1" type="button"></button>
+              <button class="quote-dot" data-slide="1" aria-label="Quote 2" type="button"></button>
+              <button class="quote-dot" data-slide="2" aria-label="Quote 3" type="button"></button>
+            </div>
+            <div class="press-card__ticker" aria-hidden="true">
+              <span class="press-card__bar" id="quoteBar"></span>
+            </div>
+            <span class="press-card__count" aria-live="polite"><b id="quoteCount">01</b> / 03</span>
+          </div>
+        </article>
+
+        <div class="quotes__logos reveal">
+          <span class="quotes__logos-label" aria-hidden="true">As featured in</span>
+          <ul class="quotes__logos-list" aria-label="Publications that have covered VELOCE">
+            <li>TopMotor</li>
+            <li>Pole Position</li>
+            <li>Velocity</li>
+            <li>AutoWeek</li>
+            <li>Racecraft</li>
+            <li>Paddock Red</li>
+          </ul>
         </div>
 
-        <div class="quotes__slider" id="quotesSlider">
-          <blockquote class="quote reveal">
-            <span class="quote__mark" aria-hidden="true">“</span>
-            <p>The GCS Hyper rewrites what we believed a road car could brake, turn and accelerate to.</p>
-            <footer>
-              <span class="quote__author">
-                <span class="quote__avatar" aria-hidden="true">TM</span>
-                <span class="quote__who">
-                  <strong>TopMotor</strong>
-                  <em>Car of the Year</em>
-                </span>
-              </span>
-              <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
-            </footer>
-          </blockquote>
-          <blockquote class="quote reveal" hidden>
-            <span class="quote__mark" aria-hidden="true">“</span>
-            <p>Nothing at this price point makes you feel like this. Raw, precise, alive.</p>
-            <footer>
-              <span class="quote__author">
-                <span class="quote__avatar" aria-hidden="true">PP</span>
-                <span class="quote__who">
-                  <strong>Pole Position</strong>
-                  <em>Weekly</em>
-                </span>
-              </span>
-              <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
-            </footer>
-          </blockquote>
-          <blockquote class="quote reveal" hidden>
-            <span class="quote__mark" aria-hidden="true">“</span>
-            <p>A masterpiece of obsession. The V10 is the loudest argument for petrol in a decade.</p>
-            <footer>
-              <span class="quote__author">
-                <span class="quote__avatar" aria-hidden="true">VM</span>
-                <span class="quote__who">
-                  <strong>Velocity Magazine</strong>
-                  <em>Design of the Year</em>
-                </span>
-              </span>
-              <span class="quote__stars" aria-label="5 out of 5 stars">★★★★★</span>
-            </footer>
-          </blockquote>
-        </div>
-        <div class="quotes__dots" id="quotesDots" role="tablist" aria-label="Quote navigation">
-          <button class="dot is-active" data-slide="0" aria-label="Quote 1"></button>
-          <button class="dot" data-slide="1" aria-label="Quote 2"></button>
-          <button class="dot" data-slide="2" aria-label="Quote 3"></button>
-        </div>
+        <p class="quotes__closer">Every verdict is independent. Every one is a permanent fixture in our press book.</p>
       </div>
     </section>
 
     <!-- CONTACT / TEST DRIVE -->
     <section class="contact section" id="contact">
+      <span class="contact__watermark" aria-hidden="true">Drive</span>
+
       <div class="container contact__grid">
         <div class="contact__info reveal">
+          <div class="contact__chip" aria-hidden="true">
+            <i class="contact__chip-dot"></i>
+            Booking open · 2 of 12 slots left this week
+          </div>
           <p class="eyebrow">Test Drive</p>
           <h2 class="contact__title">Feel It Yourself</h2>
           <p class="contact__copy">
@@ -709,6 +852,11 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 6l8 7 8-7"/></svg>
               drive@veloce-motors.com
             </li>
+          </ul>
+          <ul class="contact__tags" aria-label="What to expect">
+            <li>Private circuit</li>
+            <li>Driver coach</li>
+            <li>No obligation</li>
           </ul>
         </div>
 

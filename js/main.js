@@ -19,6 +19,15 @@
   var loader = document.getElementById("loader");
   var loaderNum = document.getElementById("loaderNum");
   var loaderBar = document.getElementById("loaderBar");
+  var loaderCar = document.getElementById("loaderCar");
+
+  function driveCar(pct) {
+    if (!loaderCar) return;
+    var road = loaderCar.parentNode;
+    var maxX = ((road ? road.clientWidth : 280) - loaderCar.offsetWidth) || 0;
+    var x = Math.max(0, Math.round(maxX * (pct / 100)));
+    loaderCar.style.transform = "translate(" + x + "px, -50%)";
+  }
 
   function runLoader() {
     if (!loader) return;
@@ -36,6 +45,7 @@
       var pct = Math.round(easeOut(p) * 100);
       if (loaderNum) loaderNum.textContent = pct;
       if (loaderBar) loaderBar.style.width = pct + "%";
+      driveCar(pct);
       if (p < 1) {
         requestAnimationFrame(tick);
       } else {
@@ -266,8 +276,8 @@
     var gio = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          gaugeArc.style.strokeDashoffset = "20";     // ~96% sweep
-          if (gaugeNeedle) gaugeNeedle.style.transform = "rotate(250deg)";
+          gaugeArc.style.strokeDashoffset = "129";     // ~270° sweep, bottom gap clear
+          if (gaugeNeedle) gaugeNeedle.style.transform = "rotate(270deg)";
           gio.unobserve(entry.target);
         }
       });
@@ -296,31 +306,65 @@
   }
 
   /* ============================================================
-     QUOTES SLIDER
+     QUOTES SLIDER (editorial panel + arrows + live progress)
      ============================================================ */
-  var dots = $$(".dot");
+  var dots = $$(".quote-dot");
   var quotes = $$(".quote");
+  var quotePrev = document.getElementById("quotePrev");
+  var quoteNext = document.getElementById("quoteNext");
+  var quoteCount = document.getElementById("quoteCount");
+  var quoteBar = document.getElementById("quoteBar");
+  var pressCard = $(".press-card");
+  var curQuote = 0;
+  var quoteTimer = null;
+
+  function runBar() {
+    if (!quoteBar || prefersReduced) return;
+    quoteBar.classList.remove("run");
+    void quoteBar.offsetWidth;
+    quoteBar.classList.add("run");
+  }
+
+  function showQuote(i) {
+    if (!quotes.length) return;
+    curQuote = (i + quotes.length) % quotes.length;
+    quotes.forEach(function (q, idx) { q.classList.toggle("is-active", idx === curQuote); });
+    dots.forEach(function (d, idx) { d.classList.toggle("is-active", idx === curQuote); });
+    if (quoteCount) quoteCount.textContent = String(curQuote + 1).padStart(2, "0");
+    runBar();
+  }
+
+  function nextQuote() { showQuote(curQuote + 1); restartQuoteTimer(); }
+  function prevQuote() { showQuote(curQuote - 1); restartQuoteTimer(); }
+
+  function restartQuoteTimer() {
+    if (quoteTimer) clearInterval(quoteTimer);
+    if (prefersReduced) return;
+    quoteTimer = setInterval(nextQuote, 6500);
+  }
+
   if (dots.length && quotes.length) {
-    function showQuote(i) {
-      quotes.forEach(function (q, idx) {
-        q.hidden = idx !== i;
-        q.classList.add("in-view");
-      });
-      dots.forEach(function (d, idx) { d.classList.toggle("is-active", idx === i); });
-    }
     dots.forEach(function (d) {
       d.addEventListener("click", function () {
         showQuote(parseInt(d.getAttribute("data-slide"), 10));
+        restartQuoteTimer();
       });
     });
-    // auto-rotate, skip if reduced motion
-    if (!prefersReduced) {
-      var qi = 0;
-      setInterval(function () {
-        qi = (qi + 1) % quotes.length;
-        showQuote(qi);
-      }, 6000);
+    if (quoteNext) quoteNext.addEventListener("click", nextQuote);
+    if (quotePrev) quotePrev.addEventListener("click", prevQuote);
+    showQuote(0);
+
+    if (pressCard && !prefersReduced) {
+      pressCard.addEventListener("mouseenter", function () {
+        if (quoteTimer) clearInterval(quoteTimer);
+        pressCard.classList.add("is-paused");
+      });
+      pressCard.addEventListener("mouseleave", function () {
+        pressCard.classList.remove("is-paused");
+        restartQuoteTimer();
+      });
     }
+    restartQuoteTimer();
   }
 
   /* ============================================================
